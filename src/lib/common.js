@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 

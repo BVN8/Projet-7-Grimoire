@@ -17,14 +17,10 @@ const auth = require('./middleware/auth');
 
 const app = express();
 
-// Middleware de CORS
 app.use(cors());
 
-// Middleware pour le parsing JSON
 app.use(express.json());
 
-// Configuration CORS (si vous avez des besoins spécifiques)
-// Assurez-vous de vérifier si cette configuration est nécessaire avec `cors` package
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
@@ -38,24 +34,18 @@ app.use((req, res, next) => {
   next();
 });
 
-// Connexion à MongoDB
-console.log('MONGO_URI:', process.env.MONGO_URI); // Affiche l'URI pour vérifier qu'il est bien chargé
-console.log('PORT:', process.env.PORT); // Affiche le port pour vérifier qu'il est bien chargé
-
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(err => console.error('Connexion à MongoDB échouée !', err)); // Affiche l'erreur détaillée
+  .catch(err => console.error('Connexion à MongoDB échouée !', err));
 
-// Routes
 app.use('/api/books', bookRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// Middleware de gestion des erreurs
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(err.stack);

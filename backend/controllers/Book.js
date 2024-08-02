@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable function-paren-newline */
 /* eslint-disable eqeqeq */
 /* eslint-disable import/no-unresolved */
@@ -23,6 +24,8 @@ exports.createBook = (req, res, next) => {
     userId: req.auth.userId,
     imageUrl: req.protocol + '://' + req.get('host') + '/' + req.file.path,
   });
+
+  console.log(JSON.stringify(book));
   book
     .save()
     .then(() => {

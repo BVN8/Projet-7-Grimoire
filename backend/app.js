@@ -1,4 +1,7 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-multiple-empty-lines */
+/* eslint-disable indent */
+/* eslint-disable linebreak-style */
 /* eslint-disable arrow-parens */
 /* eslint-disable linebreak-style */
 /* eslint-disable import/no-unresolved */
@@ -17,8 +20,6 @@ const auth = require('./middleware/auth');
 
 const app = express();
 
-app.use(cors());
-
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -33,6 +34,10 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use(cors({
+  credentials: true,
+}));
 
 mongoose
   .connect(process.env.MONGO_URI, {

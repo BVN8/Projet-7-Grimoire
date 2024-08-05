@@ -2,9 +2,9 @@
 /* eslint-disable no-console */
 // server.js
 const http = require('http');
-const app = require('./app'); // Importer l'application Express
+const app = require('./app');
 
-const port = process.env.PORT || 3000; // Définir le port
+const port = process.env.PORT || 3000;
 
 const server = http.createServer(app);
 

@@ -22,7 +22,6 @@ exports.upload = multer({
       callback(null, name);
     },
   }),
-  // limits: { fileSize: 2 * 1024 * 1024 },
 }).single("image");
 
 exports.convertToWebP = (req, res, next) => {
